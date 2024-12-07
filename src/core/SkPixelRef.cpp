@@ -242,12 +242,10 @@ void SkPixelRef::addGenIDChangeListener(GenIDChangeListener* listener) {
         SkDELETE(listener);
         return;
     }
-    SkAutoMutexAcquire lock(fGenIDChangeListenersMutex);
     *fGenIDChangeListeners.append() = listener;
 }
 
 void SkPixelRef::callGenIDChangeListeners() {
-    SkAutoMutexAcquire lock(fGenIDChangeListenersMutex);
     // We don't invalidate ourselves if we think another SkPixelRef is sharing our genID.
     if (fUniqueGenerationID) {
         for (int i = 0; i < fGenIDChangeListeners.count(); i++) {

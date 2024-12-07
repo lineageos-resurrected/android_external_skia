@@ -236,7 +236,7 @@ public:
         virtual void onChange() = 0;
     };
 
-    // Takes ownership of listener. Threadsafe.
+    // Takes ownership of listener.
     void addGenIDChangeListener(GenIDChangeListener* listener);
 
 protected:
@@ -311,7 +311,6 @@ private:
     mutable uint32_t fGenerationID;
     mutable bool     fUniqueGenerationID;
 
-    SkMutex                         fGenIDChangeListenersMutex;
     SkTDArray<GenIDChangeListener*> fGenIDChangeListeners;  // pointers are owned
 
     SkString    fURI;
